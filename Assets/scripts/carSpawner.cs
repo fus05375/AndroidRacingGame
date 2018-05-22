@@ -5,8 +5,8 @@ using UnityEngine;
 public class carSpawner : MonoBehaviour {
 
 
-    public GameObject car;
-
+    public GameObject[] cars;
+    int carNo;
     float maxPos = 2.2f;
 
     float timer;
@@ -22,8 +22,9 @@ public class carSpawner : MonoBehaviour {
         if (timer <= 0) {
             //putting enemy car randomly
             Vector3 carPos = new Vector3(Random.Range(-maxPos, maxPos), transform.position.y, transform.position.z);
+            carNo = Random.Range(0, 4);
             //initation of object
-            Instantiate(car, carPos, transform.rotation);
+            Instantiate(cars[carNo], carPos, transform.rotation);
             timer = delayTimer;
         }
         

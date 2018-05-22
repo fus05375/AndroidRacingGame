@@ -5,10 +5,15 @@ using UnityEngine;
 public class carController : MonoBehaviour {
 
     public float carSpeed;
+    public float dmg = 25f;
+
     float xMaxPos = 2.0f;
     float yMaxPos = 3.5f;
+    float live = 100f;
 
     Vector3 position;
+
+    public uiManager uiManager;
 
 	// Use this for initialization
 	void Start () {
@@ -28,5 +33,18 @@ public class carController : MonoBehaviour {
         transform.position = position;
 
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy Car" && live <= 0)
+        {
+            Destroy(gameObject);
+            uiManager.gameOverActivated();
+
+        }
+        else {
+            live = live - dmg;
+        }
     }
 }
