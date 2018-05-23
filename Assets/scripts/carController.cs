@@ -15,10 +15,21 @@ public class carController : MonoBehaviour {
 
     public uiManager uiManager;
 
+    public AudioManager audioManager;
+
 	// Use this for initialization
 	void Start () {
         position = transform.position;
-	}
+        audioManager.carSound.Play();
+        //audioManager.startTriggerCarSound.Play();
+
+    }
+
+    void Awake()
+    {
+        //audioManager.carSound.Play();
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -40,6 +51,8 @@ public class carController : MonoBehaviour {
         if (collision.gameObject.tag == "Enemy Car" && live <= 0)
         {
             Destroy(gameObject);
+            audioManager.carSound.Pause();
+
             uiManager.gameOverActivated();
 
         }

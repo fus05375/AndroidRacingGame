@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class uiManager : MonoBehaviour
 {
-
+    public Button[] buttons;
     public Text scoreText;
     int score;
     bool gameOver;
@@ -35,6 +35,10 @@ public class uiManager : MonoBehaviour
 
     public void gameOverActivated() {
         gameOver = true;
+        foreach (Button button in buttons) {
+            button.gameObject.SetActive(true);
+        }
+
     }
 
     public void Play() {
